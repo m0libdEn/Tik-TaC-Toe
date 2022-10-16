@@ -1,0 +1,160 @@
+@charset "UTF-8";
+/*====================Флексбокс==============================*/
+/*====================Обнуление стилей====================*/
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+aside, nav, footer, header, section {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  position: relative;
+  width: 100%;
+  color: #fff;
+  background: #000;
+  z-index: -2;
+}
+
+body {
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  font-family: "Patrick Hand";
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body.lock {
+  overflow: hidden;
+}
+@media (max-width: 767.98px) {
+  body.lock {
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+  }
+}
+
+input, button, textarea {
+  font-family: "Patrick Hand";
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/*=========================================================*/
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+}
+@media (max-width: 1152px) {
+  .container {
+    max-width: 750px;
+  }
+}
+@media (max-width: 750px) {
+  .container {
+    max-width: none;
+    padding: 0 10px;
+  }
+}
+
+.container {
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  width: 150px;
+  height: 150px;
+  color: #fff;
+  font-size: 96px;
+  border: 10px solid #fff;
+}
+
+h1 {
+  padding-bottom: 80px;
+  font-size: 72px;
+}
+
+.square1, .square2, .square3 {
+  border-top: 0;
+}
+
+.square3, .square6, .square9 {
+  border-right: 0;
+}
+
+.square7, .square8, .square9 {
+  border-bottom: 0;
+}
+
+.square1, .square4, .square7 {
+  border-left: 0;
+}/*# sourceMappingURL=style.css.map */
