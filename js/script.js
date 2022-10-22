@@ -11,17 +11,53 @@ const square7 = document.getElementById('square-7__info')
 const square8 = document.getElementById('square-8__info')
 const square9 = document.getElementById('square-9__info')
 
+const arrOfSquares = [square1, square2, square3, square4, square5, square6, square7, square8, square9]
+
 const header = document.getElementById('header') //Get element for change text for winner
 
 const playagain = document.getElementById('playagain')//Get element for ask to play again after game
 
+
+const popup = document.getElementById('popup')
+const next = document.getElementById('nextbutton')
+const start = document.getElementById('start')
+const firstInput = document.getElementById('inputFirst')
+const secondInput = document.getElementById('inputSecond')
+const fistPlayerOverlay = document.getElementById('popupNext')
+const secondPlayerOverlay = document.getElementById('popupStart')
+
+
 let PLAYERS = true //First player - x - true, Second Player - o - false
+let fistPlayer =""
+let secondPlayer =""
 let arrOfMoves = new Array(3) 
 for (let i = 0; i < arrOfMoves.length; i++) {
     arrOfMoves[i] =  new Array(3)
 } //Create array of moves
 
+//START
+next.addEventListener('click', function(){
+    fistPlayer = firstInput.value
+    fistPlayerOverlay.style.display = 'none'
+    secondPlayerOverlay.style.display = 'block'
+    document.getElementById('popupInfo').innerHTML = 'Put name of second player'
+})
+firstInput.addEventListener('keyup', function(el) {
+    if (el.code === 'Enter') {
+        next.click()
+    }
+})
 
+start.addEventListener('click', function(){
+    secondPlayer = secondInput.value
+    popup.style.display = 'none'
+})
+secondInput.addEventListener('keyup', function(el){
+    if(el.code === 'Enter'){
+        start.click()
+    }
+})
+//GAME----------------------------------------------
 function makeMove(square) {
   if (!checkMove(square)) {
     if (PLAYERS) { //if PLAYER == TRUE  -> that's x turn
@@ -43,20 +79,32 @@ function checkGame(){ //this function check if game finshed  - it always any var
     //check horizontal 
     for (let i = 0; i < arrOfMoves.length; i++) {
            if (arrOfMoves[i][0] === arrOfMoves[i][1] && arrOfMoves[i][1] === arrOfMoves[i][2] && arrOfMoves[i][0]!==undefined && arrOfMoves[i][1]!==undefined && arrOfMoves[i][2]!==undefined) {
-               header.innerHTML = `Winner is ${arrOfMoves[i][0]}` //change our header 
+               if (arrOfMoves[i][0] === 'X') {
+                    header.innerHTML = `Winner is ${fistPlayer}`
+               }else{
+                    header.innerHTML = `Winner is ${secondPlayer}` //change our header 
+               }
                return true
            }
        }
     //check vertical
        for (let i = 0; i < arrOfMoves.length; i++) {
            if (arrOfMoves[0][i] === arrOfMoves[1][i] && arrOfMoves[1][i] === arrOfMoves[2][i] && arrOfMoves[0][i]!==undefined && arrOfMoves[1][i]!==undefined && arrOfMoves[2][i]!==undefined) {
-               header.innerHTML = `Winner is ${arrOfMoves[0][i]}`
+            if (arrOfMoves[0][i] === 'X') {
+                header.innerHTML = `Winner is ${fistPlayer}`
+            }else{
+                header.innerHTML = `Winner is ${secondPlayer}` //change our header 
+            }
                return true
            }
        }
     //check diagonal
        if((arrOfMoves[0][0] === arrOfMoves[1][1] && arrOfMoves[1][1] === arrOfMoves[2][2] && arrOfMoves[1][1] !==undefined ) || (arrOfMoves[0][2] === arrOfMoves[1][1] && arrOfMoves[1][1] === arrOfMoves[2][0] && arrOfMoves[1][1] !==undefined)){
-           header.innerHTML = `Winner is ${arrOfMoves[1][1]}`
+        if (arrOfMoves[1][1] === 'X') {
+            header.innerHTML = `Winner is ${fistPlayer}`
+       }else{
+            header.innerHTML = `Winner is ${secondPlayer}` //change our header 
+       }
            return true 
        }
    
@@ -140,5 +188,15 @@ square9.addEventListener('click',function () {
 
 
 playagain.addEventListener('click', function(){
-    window.location.reload() //if user put the button - game is restarted
+    for (let i = 0; i < arrOfSquares.length; i++) {
+        arrOfSquares[i].innerHTML = ""
+    }
+    for (let i = 0; i < arrOfMoves.length; i++) {
+        for (let j = 0; j < arrOfMoves.length; j++) {
+            arrOfMoves[i][j] = undefined
+        }
+    }
+    playagain.style.display = 'none'
+    header.innerHTML = 'Tic-Tac-toe!'
+  //if user put the button - game is restarted
 })
